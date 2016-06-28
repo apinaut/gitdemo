@@ -24,8 +24,6 @@
  */
 package com.apiomat.nativemodule.basics;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
