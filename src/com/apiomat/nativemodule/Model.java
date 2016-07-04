@@ -42,7 +42,17 @@ public @interface Model
 	 * The {@link IModelHooks} implementation class name (com.apiomat.backend.modules.YOURMODULENAME.CLASSNAME)
 	 */
 	String hooksClassName( ) default "";
-
+	
+	/*
+	 * The {@link IModelHooksTransient} implementation class name (com.apiomat.backend.modules.YOURMODULENAME.CLASSNAME)
+	 */
+	String hooksClassNameTransient() default "";
+	
+	/*
+	 * The {@link IModelHooksNonTransient} implementation class name (com.apiomat.backend.modules.YOURMODULENAME.CLASSNAME)
+	 */
+	String hooksClassNameNonTransient() default "";
+	
 	/** Name of the module where the {@link IModelHooks} implementation is in */
 	String moduleName( ) default "";
 
@@ -106,6 +116,5 @@ public @interface Model
 	/**
 	 * TRUE if the auth hook method should be used for authentication instead of ApiOmat's internal auth
 	 */
-	boolean useOwnAuth( ) default false;
-
+	AuthState useOwnAuth( ) default AuthState.UNKNOWN;
 }
