@@ -27,18 +27,17 @@ package com.apiomat.nativemodule;
 import java.util.List;
 
 /**
- * Old interface for hook methods.
+ * Interface for hook methods.
  *
- * This class was also delivered to module developers via module SDK. To implement methods for a specific model, simply
+ * This class is also delived to module develpers via module SDK. To implement methods for a specific model, simply
  * create a class implementing this interface. Yambas will find it in the module .jar via lookup and use it
  * automatically.
  * You can test these methods by invkoing them manually.
  *
  * @author andreas
- * @param <T> The type of the model 
+ * @param <T> The type of the model
  */
-@Deprecated
-public interface IModelHooks<T> extends IModelHooksCommon<T>
+public interface IModelHooks<T>
 {
 	/**
 	 * gets called by server; the module name and model name of the calling object are set here and can be stored in the
@@ -49,22 +48,6 @@ public interface IModelHooks<T> extends IModelHooksCommon<T>
 	 */
 	void setCallingModel( T model );
 
-	/**
-	 * You can implement a custom authentication method in your own user class, which must inherit from Basics.User. If
-	 * access on an arbitrary model is checked, your user class (inheriting from user) is resolved by the users name and
-	 * the authentication method gets called.
-	 *
-	 * @param httpVerb GET / POST / DELETE / PUT
-	 * @param modelName name of the model where the user wants access to
-	 * @param modelForeignId foreign ID of the model where the user wants access to
-	 * @param userNameOrEmail username or email of the user
-	 * @param password users password
-	 * @param request the request object
-	 * @return TRUE on successfull auth
-	 */
-	@Override
-	boolean auth( String httpVerb, String modelName, String modelForeignId, String userNameOrEmail, String password, Request request );
-	
 	/* The following methods get called when the underlying model is set to "transient" in its meta model. Then, the
 	 * usual logic on server side is not called but the following methods */
 
@@ -149,6 +132,22 @@ public interface IModelHooks<T> extends IModelHooksCommon<T>
 	 * @return list of references on this object
 	 */
 	<Z extends AbstractClientDataModel> List<Z> doGetRef( String refName, String query, Request request );
+
+	/**
+	 * You can implement a custom authentication method in your own user class, which must inherit from Basics.User. If
+	 * access on an arbitrary model is checked, your user class (inheriting from user) is resolved by the users name and
+	 * the authentication method gets called.
+	 *
+	 * @param httpVerb GET / POST / DELETE / PUT
+	 * @param modelName name of the model where the user wants access to
+	 * @param modelForeignId foreign ID of the model where the user wants access to
+	 * @param userNameOrEmail username or email of the user
+	 * @param password users password
+	 * @param request the request object
+	 * @return TRUE on successfull auth
+	 */
+	boolean auth( String httpVerb, String modelName, String modelForeignId, String userNameOrEmail,
+		String password, Request request );
 
 	/* The following methods get called when the underlying model is NOT set to "transient" in its meta model. Data is
 	 * used from ApiOmat database */

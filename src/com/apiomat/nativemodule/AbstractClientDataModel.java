@@ -95,7 +95,7 @@ public abstract class AbstractClientDataModel implements IModelMethods, IResourc
 	{
 		this.resourceMethods = resourceMethods;
 	}
-
+	
 	/**
 	 * The module name where this class is contained in
 	 *
@@ -109,7 +109,7 @@ public abstract class AbstractClientDataModel implements IModelMethods, IResourc
 	 * @return class name
 	 */
 	public abstract String getModelName( );
-
+		
 	@Override
 	public String getId( )
 	{
@@ -631,30 +631,30 @@ public abstract class AbstractClientDataModel implements IModelMethods, IResourc
 		input.readString( );
 		this.ownerUserName = input.readString( );
 		this.allowedRolesRead = new HashSet<>( );
-		final int allowedRolesReadSize = input.readInt( );
+		int allowedRolesReadSize = input.readInt( );
 		for ( int i = 0; i < allowedRolesReadSize; i++ )
 		{
 			this.allowedRolesRead.add( input.readString( ) );
 		}
 		this.allowedRolesWrite = new HashSet<>( );
-		final int allowedRoleWriteSize = input.readInt( );
+		int allowedRoleWriteSize = input.readInt( );
 		for ( int i = 0; i < allowedRoleWriteSize; i++ )
 		{
 			this.allowedRolesWrite.add( input.readString( ) );
 		}
 		this.allowedRolesGrant = new HashSet<>( );
-		final int allowedRolesGrantSize = input.readInt( );
+		int allowedRolesGrantSize = input.readInt( );
 		for ( int i = 0; i < allowedRolesGrantSize; i++ )
 		{
 			this.allowedRolesGrant.add( input.readString( ) );
 		}
 		this.restrictResourceAccess = input.readBoolean( );
-		final long lma = input.readLong( );
+		long lma = input.readLong( );
 		if ( lma > -1 )
 		{
 			this.lastModifiedAt = new Date( lma );
 		}
-		final long ca = input.readLong( );
+		long ca = input.readLong( );
 		if ( ca > -1 )
 		{
 			this.createdAt = new Date( ca );
