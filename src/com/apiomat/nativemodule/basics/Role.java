@@ -22,7 +22,7 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.apiomat.nativemodule.gitdemo;
+package com.apiomat.nativemodule.basics;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
@@ -39,36 +39,33 @@ import com.esotericsoftware.kryo.io.Output;
 import com.apiomat.nativemodule.basics.*;
 import com.apiomat.nativemodule.AuthState;
 /**
-* Generated class for your dddd data model
+* Generated class for your Role data model
 *
 * DO NOT CHANGE ANY CODE EXCEPT CLASS ANNOTATIONS OR CLASS ATTRIBUTES HERE!
 * EVERYTHING ELSE WILL GET OVERWRITTEN!
 *
 */
 @SuppressWarnings( "unused" )
-@Model( moduleName = "Gitdemo",
-    hooksClassNameTransient = "com.apiomat.nativemodule.gitdemo.ddddHooksTransient", 
-    hooksClassNameNonTransient = "com.apiomat.nativemodule.gitdemo.ddddHooksNonTransient", 
-            isTransient = false,    requiredUserRoleCreate=UserRole.User, requiredUserRoleRead=UserRole.User,
-    requiredUserRoleWrite=UserRole.Owner, restrictResourceAccess=false,
-    allowedRolesCreate={}, allowedRolesRead={},
-    allowedRolesWrite={}, allowedRolesGrant={})
-public class dddd extends AbstractClientDataModel implements IModel<dddd>
+@Model( moduleName = "Basics" )
+public class Role extends AbstractClientDataModel implements IModel<Role>
 {
     /**
      * Contains the name of the module that this model belongs to
      */
-    public static final String MODULE_NAME = "Gitdemo";
+    public static final String MODULE_NAME = "Basics";
     /**
      * Contains the name of the model
      */
-    public static final String MODEL_NAME = "dddd";
+    public static final String MODEL_NAME = "Role";
 
     /** class specific attributes */
+    private List<String> members = new ArrayList<>();
+    @Mandatory
+    private String name = null;
     /**
      * Protected constructor; to create a new instance, use the createObject() method
      */
-    public dddd ()
+    public Role ()
     {}
 
     /**
@@ -89,11 +86,44 @@ public class dddd extends AbstractClientDataModel implements IModel<dddd>
         return MODEL_NAME;
     }
 
+    public List<String> getMembers()
+    {
+         return this.members;
+    }
+
+    public void setMembers( List<String> arg )
+    {
+        this.members = arg;
+    }
+
+    public String getName()
+    {
+         return this.name;
+    }
+
+    public void setName( String arg )
+    {
+        this.name = arg;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public void write( final Kryo kryo, final Output output )
     {
         super.write( kryo, output );
+        output.writeInt( this.members == null ? -1 : this.members.size() );
+        
+        if(this.members != null)
+            for( String _members : this.members )
+        {
+            output.writeString( _members );
+        }
+        final String _name = this.name;
+        output.writeBoolean( _name != null );
+        if( _name != null )
+        {
+            output.writeString( _name );
+        }
     }
 
     @Override
@@ -104,5 +134,22 @@ public class dddd extends AbstractClientDataModel implements IModel<dddd>
 
         final Request req = (Request)kryo.getContext( ).get( "creq" );
         req.toString( );
+        int membersSize = input.readInt();
+
+        if(membersSize >= 0)
+        {
+            this.members = new ArrayList<>();
+        }
+        else if(membersSize == -1)
+        {
+            this.members = null;        }
+        for(int i=0; i<membersSize; i++)
+        {
+            this.members.add( input.readString( ) );
+        }
+        if( input.readBoolean() )
+        {
+            this.name = input.readString( );
+        }
     }
 }
