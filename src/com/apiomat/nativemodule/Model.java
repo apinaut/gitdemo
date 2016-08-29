@@ -43,11 +43,15 @@ public @interface Model
 	 */
 	String hooksClassName( ) default "";
 
-	/* The {@link IModelHooksTransient} implementation class name (com.apiomat.backend.modules.YOURMODULENAME.CLASSNAME) */
+	/**
+	 * The {@link IModelHooksTransient} implementation class name (com.apiomat.backend.modules.YOURMODULENAME.CLASSNAME)
+	 */
 	String hooksClassNameTransient( ) default "";
 
-	/* The {@link IModelHooksNonTransient} implementation class name
-	 * (com.apiomat.backend.modules.YOURMODULENAME.CLASSNAME) */
+	/**
+	 * The {@link IModelHooksNonTransient} implementation class name
+	 * (com.apiomat.backend.modules.YOURMODULENAME.CLASSNAME)
+	 */
 	String hooksClassNameNonTransient( ) default "";
 
 	/** Name of the module where the {@link IModelHooks} implementation is in */
@@ -66,6 +70,12 @@ public @interface Model
 	 * the given roles
 	 */
 	boolean isGlobal( ) default false;
+
+	/**
+	 * <code>true</code> if this datamodel and its data should not be accessible via REST and therefore only used
+	 * internally.
+	 */
+	boolean isInvisible( ) default false;
 
 	/**
 	 * {@link UserRole} which is needed to create a new instance of this class
