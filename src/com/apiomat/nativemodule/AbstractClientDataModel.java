@@ -199,11 +199,7 @@ public abstract class AbstractClientDataModel implements IModelMethods, IResourc
 	@Override
 	public void setAllowedRolesRead( String[ ] allowedRolesRead )
 	{
-		if ( allowedRolesRead == null )
-		{
-			allowedRolesRead = new String[ 0 ];
-		}
-		this.allowedRolesRead = new HashSet<String>( Arrays.asList( allowedRolesRead ) );
+		this.allowedRolesRead.addAll( Arrays.asList( allowedRolesRead ) );
 	}
 
 	@Override
@@ -215,11 +211,7 @@ public abstract class AbstractClientDataModel implements IModelMethods, IResourc
 	@Override
 	public void setAllowedRolesWrite( String[ ] allowedRolesWrite )
 	{
-		if ( allowedRolesWrite == null )
-		{
-			allowedRolesWrite = new String[ 0 ];
-		}
-		this.allowedRolesWrite = new HashSet<String>( Arrays.asList( allowedRolesWrite ) );
+		this.allowedRolesWrite.addAll( Arrays.asList( allowedRolesWrite ) );
 	}
 
 	@Override
@@ -231,11 +223,7 @@ public abstract class AbstractClientDataModel implements IModelMethods, IResourc
 	@Override
 	public void setAllowedRolesGrant( String[ ] allowedRolesGrant )
 	{
-		if ( allowedRolesGrant == null )
-		{
-			allowedRolesGrant = new String[ 0 ];
-		}
-		this.allowedRolesGrant = new HashSet<String>( Arrays.asList( allowedRolesGrant ) );
+		this.allowedRolesGrant.addAll( Arrays.asList( allowedRolesGrant ) );
 	}
 
 	@Override

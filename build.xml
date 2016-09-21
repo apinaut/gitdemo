@@ -58,7 +58,6 @@
 		<mkdir dir="./tmp" />
 
 		<copy tofile="./tmp/sdk.properties" file="sdk.properties" />
-		<copy tofile="./tmp/pom.xml" file="pom.xml" />
 		<copy todir="./tmp">
 			<fileset dir="${src}">
 				<include name="**/${moduleName}.java" />
@@ -69,7 +68,6 @@
 		</copy>
 		<unzip dest="." src="./nm.zip" overwrite="false" />
 		<copy file="./tmp/sdk.properties" tofile="sdk.properties" overwrite="true" />
-		<copy file="./tmp/pom.xml" tofile="pom.xml" overwrite="true" />
 		<copy todir="${src}" overwrite="true">
 			<fileset dir="./tmp">
 				<include name="**/${moduleName}.java" />
