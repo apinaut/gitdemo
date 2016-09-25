@@ -421,7 +421,7 @@ public interface IModelMethods
 		final String className, final Request r );
 
 	/**
-	 * Finds objects by name and query
+	 * finds the objects by name and query
 	 *
 	 * @param className
 	 *        the classname of the object
@@ -429,7 +429,7 @@ public interface IModelMethods
 	 *        the query
 	 * @param r
 	 *        the request
-	 * @return Found objects. Null if strictChecks is enabled and access to one of the found models is unauthorized.
+	 * @return the objects found for that query
 	 */
 	public IModel<?>[ ] findByNames( final String className, final String query,
 		final Request r );
